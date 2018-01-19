@@ -27,4 +27,9 @@
         <!--<item name="statusBarColor">@c</item>-->
     </style>
 
+    <style name="textAppearanceSmall">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>
