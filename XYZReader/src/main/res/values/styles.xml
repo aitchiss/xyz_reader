@@ -28,8 +28,11 @@
     </style>
 
     <style name="textAppearanceSmall">
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="textAppearanceLarge">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>
