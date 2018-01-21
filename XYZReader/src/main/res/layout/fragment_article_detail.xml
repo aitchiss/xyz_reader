@@ -86,13 +86,13 @@
         android:layout_height="match_parent">
 
         <com.example.xyzreader.ui.MaxWidthLinearLayout
+            android:paddingTop="@dimen/detail_body_top_padding"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:maxWidth="@dimen/detail_card_max_width"
-            android:background="#fff"
-            >
+            android:background="#fff" >
 
             <TextView
                 android:id="@+id/article_body"
