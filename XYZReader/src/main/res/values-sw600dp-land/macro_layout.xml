@@ -1,6 +1,11 @@
 <resources>
+    <!-- list -->
+    <integer name="list_column_count">1</integer>
+    <dimen name="list_side_margin">24dp</dimen>
+    <dimen name="list_toolbar_side_margin">24dp</dimen>
     <!-- detail -->
     <bool name="detail_is_card">true</bool>
     <dimen name="detail_photo_height">300dp</dimen>
     <dimen name="detail_card_top_margin">256dp</dimen>
+    <dimen name="detail_app_bar_height">0dp</dimen>
 </resources>

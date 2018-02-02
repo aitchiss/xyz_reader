@@ -9,4 +9,6 @@
 
     <string name="up">Up</string>
 
+    <string name="get_started">Select an article to get started</string>
+
 </resources>
