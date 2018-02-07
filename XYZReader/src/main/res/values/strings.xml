@@ -10,5 +10,6 @@
     <string name="up">Up</string>
 
     <string name="get_started">Select an article to get started</string>
+    <string name="no_network">You must be online to refresh</string>
 
 </resources>

@@ -9,7 +9,11 @@ import android.content.Loader;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.drawable.GradientDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -48,6 +52,7 @@ public class ArticleListActivity extends ActionBarActivity implements
     private Toolbar mToolbar;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private CoordinatorLayout mCoordinatorLayout;
 
     private boolean mTwoPaneMode;
 
@@ -63,6 +68,7 @@ public class ArticleListActivity extends ActionBarActivity implements
         setContentView(R.layout.activity_article_list);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -75,15 +81,30 @@ public class ArticleListActivity extends ActionBarActivity implements
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState == null && isNetworkAvailable()) {
             refresh();
         }
 
         mTwoPaneMode = (findViewById(R.id.detail_container) != null);
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     private void refresh() {
-        startService(new Intent(this, UpdaterService.class));
+        if(isNetworkAvailable()){
+            startService(new Intent(this, UpdaterService.class));
+        } else {
+            Snackbar snackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.no_network), Snackbar.LENGTH_LONG);
+            snackbar.show();
+            mIsRefreshing = false;
+            updateRefreshingUI();
+        }
+
     }
 
     @Override
