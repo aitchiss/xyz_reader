@@ -7,6 +7,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:elevation="4dp"
         android:layout_height="@dimen/detail_photo_height">
 
         <android.support.design.widget.CollapsingToolbarLayout
